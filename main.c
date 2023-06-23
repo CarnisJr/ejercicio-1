@@ -5,14 +5,14 @@
 int main(void){
         
     
-    int num, numInverso;
-    int i, j, aux, aux1, cont, fact, selector; 
+    int num, numInverso, numAmstrong, numAuxAmstrong;
+    int i, j, aux, aux1, auxCont, cont, fact, selector; 
 
     do{
 
         fact = 1;
         printf("Menu\n");
-        printf("1. For\n2. Do While\n3. While\n4. Palindromo\n5. Siguiente\n6. Salir\n\n");
+        printf("1. For\n2. Do While\n3. While\n4. Palindromo\n5. Amstrong\n6. Salir\n\n");
         scanf("%d", &selector);
         system("cls");
 
@@ -38,12 +38,17 @@ int main(void){
             printf("Ingrese un numero entero positivo: ");
             scanf("%d", &num);
             aux = num;
-            do{
-            
-               fact *= aux--;
+            if(aux == 0){
+                printf("El factorial de %d es: %d\n", num, fact);
+            }else{
 
-            }while(aux > 1);
-            printf("El factorial de %d es: %d\n", num, fact);
+                do{
+                
+                fact *= aux--;
+
+                }while(aux > 1);
+                printf("El factorial de %d es: %d\n", num, fact);
+            }
             system("pause");
             system("cls");
             break;
@@ -110,12 +115,50 @@ int main(void){
         case 5:
 
             /*Codigo del problema del viernes*/
-            continue;
+            printf("Número de amstrong\n\n");
+            cont = 0;
+            i = 1;
+            numAmstrong = 0;
+            printf("Ingresar un numero: ");
+            scanf("%d", &num);
+            auxCont = num;
+            aux = num;
+
+            //Contador de digitos
+            while(auxCont > 0){
+
+                auxCont = auxCont / 10;
+                cont++;
+            }
+
+            while(aux > 0){
+
+                j = cont;
+                aux = num / i;
+                aux1 = aux % 10;
+                i *= 10;
+                numAuxAmstrong = aux1;
+
+                while(j - 1 > 0){
+
+                    numAuxAmstrong *= aux1;
+                    j--;
+                }
+                numAmstrong += numAuxAmstrong;
+            }
+
+            if(num == numAmstrong)
+                printf("Es un numero de amstrong\n");
+            else
+                printf("No es un numero de amstrong\n");
+            
+            system("pause");
+            system("cls");
             break;
 
         case 6:
 
-            printf("SALIENDO...");
+            printf("SALIENDO...\n");
             system("pause");
             system("cls");
             break;
